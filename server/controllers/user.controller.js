@@ -1,45 +1,33 @@
+const bcrypt = require('bcrypt');
 const User = require('../models/user');
-const cuid = require('cuid');
-const slug = require('limax');
-const sanitizeHtml = require('sanitize-html');
+const { generateToken } = require('../utils/token');
+const SALT_ROUNDS = 10;
 
 /**
- * Save a post
+ * Add a user
  * @param req
  * @param res
- * @returns void
+ * @returns request
  */
 addUser = async (req, res) => {
   if (!req.body.user.name || !req.body.user.password) {
-    return res.status(403).end();
+    return res.status(403).send({ message : 'Missing Information' }).end();
   }
 
   const stored = await User.findOne({ name: req.body.user.name });
   if(stored) {
-    return res.status(409).end();
+    return res.status(409).send({ message : 'This user is already created' }).end();
   }
 
   try {
-    //const securedPassword = 'securedPassword';
-
     const { name, password } = req.body.user;
-
-    console.log("-------------------");
-    console.log(name, password);
-    console.log("-------------------");
+    const securedPassword = await bcrypt.hash(password, SALT_ROUNDS);
   
-    const user = await User.create({
-      name,
-      password
-    });
+    await User.create({ name, password: securedPassword });
 
-    console.log("--------------");
-    console.log(user);
-    console.log("--------------");
-
-    return res.json({ token: "JWT_TOKEN" });
+    return res.json({ token: generateToken({ name }) });
   } catch(e) {
-    return res.status(500).send(err);
+    return res.status(500).send(e);
   }
 };
 

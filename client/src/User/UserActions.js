@@ -1,10 +1,13 @@
 import callApi from '../util/apiCaller';
+import { setCookieData } from '../util/cookies';
 
 // Export Constants
 export const LOGIN = 'LOGIN';
 
 // Export Actions
 export function login(name, token) {
+  setCookieData('token', token, 24 * 60 * 60 * 1000)
+
   return {
     type: LOGIN,
     user: { name, token },

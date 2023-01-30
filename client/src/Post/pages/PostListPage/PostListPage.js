@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 // Import Components
 import PostList from '../../components/PostList';
@@ -9,23 +8,22 @@ import UserManagement from '../../../User/components/UserManagement';
 import { addPostRequest, deletePostRequest, fetchPosts } from '../../PostActions';
 import Logo from '../../../logo.svg';
 
-const PostListPage = ({ showAddPost }) => {
-
+const PostListPage = () => {
   const dispatch = useDispatch();
   const posts = useSelector(state => state.posts.data);
   const authToken = useSelector(state => state.users.token);
 
   useEffect(() => {
     dispatch(fetchPosts());
-  },[]);
+  },[dispatch]);
 
   const handleDeletePost = post => {
     if (confirm('Do you want to delete this post')) { // eslint-disable-line
-      dispatch(deletePostRequest(post));
+      dispatch(deletePostRequest(post, authToken));
     }
   };
 
-  const handleAddPost = (post) => dispatch(addPostRequest(post));
+  const handleAddPost = (post) => dispatch(addPostRequest(post, authToken));
 
   return (
     <div className="container">
@@ -41,7 +39,7 @@ const PostListPage = ({ showAddPost }) => {
       <div className="row">
         <div className="col-6">
           { authToken ? 
-            <PostCreateWidget addPost={handleAddPost} showAddPost={showAddPost} /> :
+            <PostCreateWidget addPost={handleAddPost} /> :
             <UserManagement/> }
         </div>
         <div className="col-6">
@@ -51,10 +49,5 @@ const PostListPage = ({ showAddPost }) => {
     </div>
   );
 };
-
-PostListPage.propTypes = {
-  showAddPost: PropTypes.bool.isRequired
-};
-
 
 export default PostListPage;

@@ -2,8 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const logger = require('morgan');
+require('dotenv').config();
+
 const app = express();
 const apiPort = 3000;
+
 const db = require('./db');
 const posts = require('./routes/post.routes');
 const users = require('./routes/user.routes');

@@ -14,7 +14,7 @@ export function PostDetailPage() {
 
   useEffect(() => {
     if (!post) dispatch(fetchPost(cuid));
-  }, []);
+  }, [post, cuid, dispatch]);
 
   return (post
     ?

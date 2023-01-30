@@ -1,7 +1,12 @@
+import jwt from 'jsonwebtoken';
+import { getCookieData } from '../util/cookies';
 import { LOGIN } from './UserActions';
 
 // Initial State
-const initialState = { name: null, token: null };
+const token =  getCookieData('token');
+const decoded = jwt.decode(token);
+
+const initialState = { token, name: decoded && decoded.name };
 
 const UserReducer = (state = initialState, action) => {
   switch (action.type) {
