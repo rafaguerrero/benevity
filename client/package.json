@@ -21,6 +21,7 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
+    "local": "ENV NODE_ENV=development PORT=8000 react-scripts start",
     "start": "PORT=8000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

@@ -14,11 +14,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const PostCreateWidget = ({ addPost }) => {
-
-    const [state, setState] = useState({});
-    const classes = useStyles();
-
-
+  const [state, setState] = useState({});
+  const classes = useStyles();
 
   const submit = () => {
     if (state.name && state.title && state.content) {
