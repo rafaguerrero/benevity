@@ -41,13 +41,15 @@ function ImgUploader({ onUpload }) {
   const classes = useStyles();
 
   const onFileChange = (e) => {
-    const files = e.target.files;
+    const target = e.target;
+    const files = target.files;
     
     if(files.length > 0) {  
       setIsLoading(true);
 
       uploadImage(files[0])
         .then((data) => {
+          target.value = '';
           onUpload([{ name: data.public_id }]);
           setIsLoading(false);
         });

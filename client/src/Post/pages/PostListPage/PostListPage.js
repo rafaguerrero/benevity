@@ -13,7 +13,7 @@ const PostListPage = () => {
 
   useEffect(() => {
     dispatch(fetchPosts());
-  },[]);
+  },[dispatch]);
 
   const handleDeletePost = post => {
     if (confirm('Do you want to delete this post')) { // eslint-disable-line

@@ -58,7 +58,7 @@ const PostCreateWidget = ({ addPost }) => {
         <TextField variant="filled" label="Post title" name="title" onChange={handleChange} />
         <TextField variant="filled" multiline rows="4" label="Post content" name="content" onChange={handleChange} />
 
-        {state.imgs && state.imgs.length > 0 && <ImgList imgs={state.imgs} onRemove={handlerOnImgRemove}/> }
+        <ImgList imgs={state.imgs} onRemove={handlerOnImgRemove}/>
         <ImgUploader onUpload={handleOnUpload}/>
 
         <Button className="mt-4" variant="contained" color="primary" onClick={() => submit()} disabled={!state.name || !state.title || !state.content}>

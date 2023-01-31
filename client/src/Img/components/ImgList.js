@@ -18,6 +18,8 @@ const useStyles = makeStyles(theme => ({
 function ImgList({ imgs, onRemove }) {
   const classes = useStyles();
 
+  if(!imgs || imgs.length === 0) return <></>;
+
   return (
     <div className={`${classes.root} d-flex w-100 mt-4`}>
       { imgs.map(img => <ImgListItem img={img} key={img.name} onRemove={onRemove}/>) }
@@ -28,7 +30,7 @@ function ImgList({ imgs, onRemove }) {
 ImgList.propTypes = {
   imgs: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired
-  })).isRequired,
+  })),
   onRemove: PropTypes.func
 };
 
