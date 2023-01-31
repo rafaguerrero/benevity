@@ -10,27 +10,24 @@ import ImgZoom from './ImgZoom';
 // Import Style
 const useStyles = makeStyles(theme => ({
     root: {
-        '&': {
-            position: 'relative',
-        }
+      position: 'relative',
+      minWidth: '100px'
     },
     cross: {
-      '&': {
-        backgroundColor: 'red',
-        color: 'white',
-        position: 'absolute',
-        right: '-15px',
-        top: '-15px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: '50%',
-        height: '30px',
-        width: '30px',
-        fontWeight: 'bold',
-        border: '1px solid white',
-        lineHeight: '15px'
-      }
+      backgroundColor: 'red',
+      color: 'white',
+      position: 'absolute',
+      right: '-15px',
+      top: '-15px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: '50%',
+      height: '30px',
+      width: '30px',
+      fontWeight: 'bold',
+      border: '1px solid white',
+      lineHeight: '15px'
     }
 }));
 

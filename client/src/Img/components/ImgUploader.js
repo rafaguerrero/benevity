@@ -6,33 +6,28 @@ import { uploadImage } from '../../util/cloudinary';
 // Import Style
 const useStyles = makeStyles(theme => ({
     root: {
-        '&': {
-            gap: '10px',
-            flexWrap: 'wrap'
-        },
-        '&.loading': {
-          opacity: '0.2',
-          pointerEvents: 'none'
+      gap: '10px',
+      flexWrap: 'wrap',
+
+      '&.loading': {
+        opacity: '0.2',
+        pointerEvents: 'none'
       }
     },
     input: {
-      '&': {
-        display: 'none'
-      }
+      display: 'none'
     },
     label: {
-      '&': {
-        width: '100px',
-        height: '100px',
-        backgroundColor: 'rgba(0, 0, 0, 0.09)',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '30px',
-        borderTopLeftRadius: '4px',
-        borderTopRightRadius: '4px',
-        borderBottom: '1px solid rgba(0, 0, 0, 0.42)',
-        cursor: 'pointer'
-      }
+      width: '100px',
+      height: '100px',
+      backgroundColor: 'rgba(0, 0, 0, 0.09)',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: '30px',
+      borderTopLeftRadius: '4px',
+      borderTopRightRadius: '4px',
+      borderBottom: '1px solid rgba(0, 0, 0, 0.42)',
+      cursor: 'pointer'
     }
 }));
 

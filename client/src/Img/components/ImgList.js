@@ -8,10 +8,8 @@ import { makeStyles } from '@material-ui/core/styles';
 // Import Style
 const useStyles = makeStyles(theme => ({
     root: {
-        '&': {
-            gap: '20px',
-            flexWrap: 'wrap'
-        }
+      gap: '20px',
+      flexWrap: 'wrap'
     },
 }));
 
