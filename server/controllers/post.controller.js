@@ -2,6 +2,7 @@ const Post = require('../models/post');
 const cuid = require('cuid');
 const slug = require('limax');
 const sanitizeHtml = require('sanitize-html');
+const { deleteImage } = require('../utils/cloudinary');
 
 /**
  * Get all posts
@@ -68,15 +69,17 @@ getPost = async (req, res) => {
  * @returns void
  */
 deletePost = async (req, res) => {
-  Post.findOne({ cuid: req.params.cuid }).exec((err, post) => {
-    if (err) {
-      res.status(500).send(err);
-    }
 
-    post.remove(() => {
-      res.status(200).end();
-    });
-  });
+  try {
+    const post = await Post.findOne({ cuid: req.params.cuid });
+  
+    await Promise.all(post.imgs.map(deleteImage))
+    await post.delete();
+
+    return res.status(200).end();
+  } catch(e) {
+    return res.status(500).send(e);
+  }
 };
 
 module.exports = {
