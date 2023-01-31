@@ -23,17 +23,15 @@ getPosts = async (req, res) => {
  * Save a post
  * @param req
  * @param res
- * @returns void
+ * @returns request promise
  */
 addPost = async (req, res) => {
   if (!req.body.post.title || !req.body.post.content) {
     return res.status(403).send({ message : 'Information missing' }).end();
   }
 
-  let validate = null
-
   try {
-    validate = validateToken(req.headers.authorization)
+    const validate = validateToken(req.headers.authorization)
   
     const newPost = new Post(req.body.post);
   
@@ -74,13 +72,11 @@ getPost = async (req, res) => {
  * Delete a post
  * @param req
  * @param res
- * @returns void
+ * @returns request promise
  */
 deletePost = async (req, res) => {
-  let validate = null
-
   try {
-    validate = validateToken(req.headers.authorization);
+    const validate = validateToken(req.headers.authorization);
 
     const post = await Post.findOne({ cuid: req.params.cuid });
 
@@ -95,8 +91,6 @@ deletePost = async (req, res) => {
   } catch(e) {
     return res.status(403).send({ message: "Not Allowed" }).end();
   }
-
-  
 };
 
 module.exports = {

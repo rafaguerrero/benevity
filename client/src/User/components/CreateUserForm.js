@@ -1,22 +1,13 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
 import { addUserRequest } from '../UserActions';
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        '& > *': {
-            margin: theme.spacing(1),
-        },
-    },
-}));
-
-function CreateUserForm() {
+function CreateUserForm({ className }) {
     const dispatch = useDispatch();
     const [state, setState] = useState({});
-    const classes = useStyles();
 
     const handleSubmit = () => {
         dispatch(addUserRequest({ 
@@ -40,7 +31,7 @@ function CreateUserForm() {
         state.password !== state.confirm;
 
     return (
-        <div className={`${classes.root} d-flex flex-column w-100`}>
+        <div className={`${className} d-flex flex-column w-100`}>
             <h3 className='mt-4'>Create a user</h3>
             <TextField variant="filled" label="User" name="name" onChange={handleChange} />
             <TextField type='password' variant="filled" label="Password" name="password" onChange={handleChange} />
@@ -50,6 +41,10 @@ function CreateUserForm() {
             </Button>
         </div>
     );
+};
+
+CreateUserForm.propTypes = {
+    className: PropTypes.string
 };
 
 export default CreateUserForm;
